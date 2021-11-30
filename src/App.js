@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Posts from "./posts/posts";
+import Pagination from "./posts/pagination";
 
 const url = "https://jsonplaceholder.typicode.com/posts";
 
@@ -25,10 +26,22 @@ const App = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPost = posts.slice(0, 10);
 
+  // change page
+  const paginate = (pageNumber) => {
+    console.log(pageNumber);
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="container mt-5">
       <h1 className="text-primary mb-3">My Posts</h1>
       <Posts posts={currentPost} loading={loading} />
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
+      <h1>buttholes</h1>
     </div>
   );
 };

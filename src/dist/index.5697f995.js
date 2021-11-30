@@ -22737,6 +22737,8 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _posts = require("./posts/posts");
 var _postsDefault = parcelHelpers.interopDefault(_posts);
+var _pagination = require("./posts/pagination");
+var _paginationDefault = parcelHelpers.interopDefault(_pagination);
 var _s = $RefreshSig$();
 const url = "https://jsonplaceholder.typicode.com/posts";
 const App = ()=>{
@@ -22758,11 +22760,16 @@ const App = ()=>{
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPost = posts.slice(0, 10);
+    // change page
+    const paginate = (pageNumber)=>{
+        console.log(pageNumber);
+        setCurrentPage(pageNumber);
+    };
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         className: "container mt-5",
         __source: {
             fileName: "src/App.js",
-            lineNumber: 29,
+            lineNumber: 36,
             columnNumber: 5
         },
         __self: undefined,
@@ -22771,7 +22778,7 @@ const App = ()=>{
                 className: "text-primary mb-3",
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 30,
+                    lineNumber: 37,
                     columnNumber: 7
                 },
                 __self: undefined,
@@ -22782,10 +22789,30 @@ const App = ()=>{
                 loading: loading,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 31,
+                    lineNumber: 38,
                     columnNumber: 7
                 },
                 __self: undefined
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx(_paginationDefault.default, {
+                postsPerPage: postsPerPage,
+                totalPosts: posts.length,
+                paginate: paginate,
+                __source: {
+                    fileName: "src/App.js",
+                    lineNumber: 39,
+                    columnNumber: 7
+                },
+                __self: undefined
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                __source: {
+                    fileName: "src/App.js",
+                    lineNumber: 44,
+                    columnNumber: 7
+                },
+                __self: undefined,
+                children: "buttholes"
             })
         ]
     }));
@@ -22801,7 +22828,61 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./posts/posts":"ghNOl"}],"ciiiV":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","./posts/posts":"ghNOl","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./posts/pagination":"aAVxK"}],"ghNOl":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$a287 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$a287.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const Posts = ({ posts , loading  })=>{
+    if (loading) return(/*#__PURE__*/ _jsxRuntime.jsx("h2", {
+        __source: {
+            fileName: "src/posts/posts.js",
+            lineNumber: 5,
+            columnNumber: 12
+        },
+        __self: undefined,
+        children: "Loading . . . "
+    }));
+    return(/*#__PURE__*/ _jsxRuntime.jsx("ul", {
+        className: "list-group mb-4",
+        __source: {
+            fileName: "src/posts/posts.js",
+            lineNumber: 8,
+            columnNumber: 5
+        },
+        __self: undefined,
+        children: posts.map((post)=>{
+            return(/*#__PURE__*/ _jsxRuntime.jsx("li", {
+                className: "list-group-item",
+                __source: {
+                    fileName: "src/posts/posts.js",
+                    lineNumber: 11,
+                    columnNumber: 11
+                },
+                __self: undefined,
+                children: post.title
+            }, post.id));
+        })
+    }));
+};
+_c = Posts;
+exports.default = Posts;
+var _c;
+$RefreshReg$(_c, "Posts");
+
+  $parcel$ReactRefreshHelpers$a287.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -22951,11 +23032,11 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"aeH4U"}],"ghNOl":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$a287 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-refresh/runtime":"aeH4U"}],"aAVxK":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$121b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$a287.prelude(module);
+$parcel$ReactRefreshHelpers$121b.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -22963,44 +23044,58 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-const Posts = ({ posts , loading  })=>{
-    if (loading) return(/*#__PURE__*/ _jsxRuntime.jsx("h2", {
+const Pagination = ({ postsPerPage , totalPosts , paginate  })=>{
+    const pageNumbers = [];
+    console.log(postsPerPage, totalPosts);
+    for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++)pageNumbers.push(i);
+    return(/*#__PURE__*/ _jsxRuntime.jsx("nav", {
         __source: {
-            fileName: "src/posts/posts.js",
-            lineNumber: 5,
-            columnNumber: 12
-        },
-        __self: undefined,
-        children: "Loading . . . "
-    }));
-    return(/*#__PURE__*/ _jsxRuntime.jsx("ul", {
-        className: "list-group mb-4",
-        __source: {
-            fileName: "src/posts/posts.js",
-            lineNumber: 8,
+            fileName: "src/posts/pagination.js",
+            lineNumber: 11,
             columnNumber: 5
         },
         __self: undefined,
-        children: posts.map((post)=>{
-            /*#__PURE__*/ _jsxRuntime.jsx("li", {
-                className: "list-group-item",
-                __source: {
-                    fileName: "src/posts/posts.js",
-                    lineNumber: 10,
-                    columnNumber: 9
-                },
-                __self: undefined,
-                children: post.title
-            }, post.id);
+        children: /*#__PURE__*/ _jsxRuntime.jsx("ul", {
+            className: "pagination",
+            __source: {
+                fileName: "src/posts/pagination.js",
+                lineNumber: 12,
+                columnNumber: 7
+            },
+            __self: undefined,
+            children: pageNumbers.map((number)=>{
+                return(/*#__PURE__*/ _jsxRuntime.jsx("li", {
+                    className: "page-item",
+                    __source: {
+                        fileName: "src/posts/pagination.js",
+                        lineNumber: 15,
+                        columnNumber: 13
+                    },
+                    __self: undefined,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx("a", {
+                        onClick: ()=>paginate(number)
+                        ,
+                        href: "!#",
+                        className: "page-link",
+                        __source: {
+                            fileName: "src/posts/pagination.js",
+                            lineNumber: 16,
+                            columnNumber: 15
+                        },
+                        __self: undefined,
+                        children: number
+                    })
+                }, number));
+            })
         })
     }));
 };
-_c = Posts;
-exports.default = Posts;
+_c = Pagination;
+exports.default = Pagination;
 var _c;
-$RefreshReg$(_c, "Posts");
+$RefreshReg$(_c, "Pagination");
 
-  $parcel$ReactRefreshHelpers$a287.postlude(module);
+  $parcel$ReactRefreshHelpers$121b.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
